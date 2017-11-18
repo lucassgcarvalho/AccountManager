@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.com.enums.Roles;
 import br.com.model.Role;
 import br.com.model.User;
 import br.com.repository.RoleRepository;
@@ -17,8 +18,10 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private UserRepository userRepository;
+	
 	@Autowired
     private RoleRepository roleRepository;
+	
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -31,7 +34,7 @@ public class UserServiceImpl implements UserService{
 	public void saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setActive(1);
-        Role userRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findById(Roles.ADMIN.getValue());
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
 		userRepository.save(user);
 	}

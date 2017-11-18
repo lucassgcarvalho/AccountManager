@@ -7,6 +7,6 @@ import br.com.model.Role;
 
 @Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<Role, Integer>{
-	Role findByRole(String role);
+	Role findById(Integer role);
 
 }
