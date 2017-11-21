@@ -65,6 +65,5 @@ public class LoginController {
 		modelAndView.setViewName("admin/home");
 		return modelAndView;
 	}
-	
 
 }
