@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.model.User;
+import br.com.service.SecurityService;
 import br.com.service.UserService;
 
 @Controller
@@ -19,7 +20,12 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+    private SecurityService securityService;
 
+	private Authentication auth;
+	
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
 		ModelAndView modelAndView = new ModelAndView();
@@ -52,6 +58,7 @@ public class LoginController {
 			modelAndView.setViewName("registration");
 			
 		}
+		securityService.autologin(user.getEmail(), user.getPassword());
 		return modelAndView;
 	}
 	
@@ -59,6 +66,7 @@ public class LoginController {
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		auth.isAuthenticated();
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
