@@ -55,7 +55,7 @@ public class LoginController {
 		return modelAndView;
 	}
 	
-	@RequestMapping(value={"/admin/home"}, method = {RequestMethod.GET})
+	@RequestMapping(value={"/admin/home"}, method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView home(){
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

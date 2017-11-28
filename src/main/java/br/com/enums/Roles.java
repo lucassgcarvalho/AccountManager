@@ -4,11 +4,13 @@ import java.io.Serializable;
 
 public enum Roles implements Serializable {
 	
-	ADMIN(1),USER(2);
+	ADMIN(1,"Admin"), USER(2, "CommonUser");
 	
-	private Integer value;
+	private Integer id;
+	private String value;
 	
-	Roles(Integer value){
+	Roles(Integer id, String value){
+		this.id = id;
 		this.value = value;
 	}
 
@@ -16,12 +18,21 @@ public enum Roles implements Serializable {
 		return Roles.valueOf(value.toString());
 	}
 	
-	public Integer getValue() {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getValue() {
 		return value;
 	}
 
-	public void setValue(Integer value) {
+	public void setValue(String value) {
 		this.value = value;
 	}
+	
 	
 }
