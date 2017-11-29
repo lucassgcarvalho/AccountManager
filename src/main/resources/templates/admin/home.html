@@ -13,10 +13,16 @@
 <body>
 	<div class="container">
 	
-		<form th:action="@{/logoutt}" method="get">
+		<form th:action="@{/logout}" method="get">
 			<button class="btn btn-md btn-danger btn-block" name="registration"
 				type="Submit">Logout</button>
 		</form>    
+		
+		<!-- <form th:action="@{/expireSession}" method="get">
+			<button class="btn btn-md btn-info btn-block" name="registration"
+				type="Submit">Expire Session</button>
+		</form> -->
+		
 		
 		<div class="panel-group" style="margin-top:40px">
 			<div class="panel panel-primary">

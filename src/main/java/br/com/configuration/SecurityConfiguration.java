@@ -1,6 +1,5 @@
 package br.com.configuration;
 
-import javax.servlet.http.Cookie;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +48,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
-				.antMatchers("/admin/**").hasAuthority(Roles.ADMIN.getValue()).anyRequest()
-				.authenticated()
+				.antMatchers("/admin/**").hasAuthority(Roles.ADMIN.getValue()).anyRequest().authenticated()
 				.and().csrf().disable()
 				.formLogin()
 				.loginPage("/login")
@@ -81,7 +79,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			//.deleteCookies("spring:session:sessions")
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			//.permitAll()
-			.logoutSuccessUrl("/")
+			.logoutSuccessUrl("/login")
 			.and()
 			.exceptionHandling()
 			.accessDeniedPage("/access-denied");
